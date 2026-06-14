@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Veepie Soluções Digitais – Transformação Digital para Empresas</title>
+  <meta name="description" content="Veepie Soluções Digitais: especialistas em Monday.com, desenvolvimento de apps e automação de processos para empresas brasileiras."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #1B2B5E;
+      --gold:   #F5A623;
+      --white:  #FFFFFF;
+      --offwhite: #F7F8FC;
+      --gray:   #6B7280;
+      --light:  #E8ECF6;
+      --radius: 14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: #1a1a2e;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--light);
+    }
+    nav img { height: 40px; }
+    nav ul { list-style: none; display: flex; gap: 32px; }
+    nav ul a { text-decoration: none; font-size: 14px; font-weight: 500; color: var(--navy); transition: color .2s; }
+    nav ul a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--navy); color: var(--white) !important;
+      padding: 10px 22px; border-radius: 8px; font-weight: 600 !important;
+      transition: background .2s !important;
+    }
+    .nav-cta:hover { background: var(--gold) !important; color: var(--navy) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      background: linear-gradient(135deg, var(--navy) 0%, #253d8a 60%, #1a3070 100%);
+      padding: 120px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(245,166,35,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -100px; left: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-content { max-width: 680px; position: relative; z-index: 1; }
+    .hero-eyebrow {
+      display: inline-block;
+      background: rgba(245,166,35,0.2);
+      color: var(--gold);
+      font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 20px; margin-bottom: 24px;
+      border: 1px solid rgba(245,166,35,0.3);
+    }
+    .hero h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.12;
+      margin-bottom: 24px;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero p {
+      font-size: 18px; color: rgba(255,255,255,0.75);
+      max-width: 540px; margin-bottom: 40px; line-height: 1.7;
+    }
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold); color: var(--navy);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700; font-size: 15px;
+      padding: 14px 28px; border-radius: var(--radius);
+      text-decoration: none; transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(245,166,35,0.4);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245,166,35,0.5); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--white);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600; font-size: 15px;
+      padding: 14px 28px; border-radius: var(--radius);
+      text-decoration: none; border: 1.5px solid rgba(255,255,255,0.3);
+      transition: border-color .2s, background .2s;
+    }
+    .btn-secondary:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+
+    /* ── SECTION BASE ── */
+    section { padding: 96px 48px; }
+    .section-label {
+      font-size: 12px; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(28px, 3.5vw, 44px); font-weight: 800;
+      color: var(--navy); line-height: 1.2; margin-bottom: 16px;
+    }
+    .section-sub { font-size: 17px; color: var(--gray); max-width: 560px; line-height: 1.7; }
+    .center { text-align: center; }
+    .center .section-sub { margin: 0 auto; }
+
+    /* ── SERVICES ── */
+    #servicos { background: var(--offwhite); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px; margin-top: 56px;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      border: 1px solid var(--light);
+      transition: transform .25s, box-shadow .25s;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--navy), var(--gold));
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(27,43,94,0.12); }
+    .service-icon {
+      width: 56px; height: 56px;
+      background: var(--light);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; margin-bottom: 20px;
+    }
+    .service-card h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 20px; font-weight: 700; color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .service-card p { font-size: 15px; color: var(--gray); line-height: 1.65; }
+    .service-tag {
+      display: inline-block; margin-top: 16px;
+      background: var(--light); color: var(--navy);
+      font-size: 12px; font-weight: 600;
+      padding: 4px 12px; border-radius: 20px;
+    }
+
+    /* ── PETCARE HIGHLIGHT ── */
+    #petcare {
+      background: linear-gradient(135deg, var(--navy) 0%, #253d8a 100%);
+      color: var(--white);
+    }
+    .petcare-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    }
+    .petcare-badge {
+      display: inline-block;
+      background: rgba(245,166,35,0.2); color: var(--gold);
+      font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 20px; margin-bottom: 20px;
+      border: 1px solid rgba(245,166,35,0.3);
+    }
+    .petcare-inner h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(28px, 3vw, 42px); font-weight: 800;
+      color: var(--white); line-height: 1.2; margin-bottom: 16px;
+    }
+    .petcare-inner h2 span { color: var(--gold); }
+    .petcare-inner p { font-size: 16px; color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 28px; }
+    .petcare-features { list-style: none; margin-bottom: 32px; }
+    .petcare-features li {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 15px; color: rgba(255,255,255,0.85);
+      padding: 6px 0;
+    }
+    .petcare-features li::before {
+      content: '✓';
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--gold); color: var(--navy);
+      font-size: 12px; font-weight: 700; flex-shrink: 0;
+    }
+    .app-mockup {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px;
+      padding: 48px 32px;
+      text-align: center;
+    }
+    .app-mockup .paw { font-size: 80px; margin-bottom: 16px; display: block; }
+    .app-mockup h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 24px; font-weight: 800; color: var(--white);
+    }
+    .app-mockup p { font-size: 14px; color: rgba(255,255,255,0.6); margin-top: 8px; }
+    .store-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold); color: var(--navy);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700; font-size: 14px;
+      padding: 12px 24px; border-radius: 10px;
+      text-decoration: none; margin-top: 20px;
+      transition: transform .2s;
+    }
+    .store-btn:hover { transform: scale(1.04); }
+
+    /* ── WHY ── */
+    #porque { background: var(--white); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 32px; margin-top: 56px;
+    }
+    .why-item { text-align: center; }
+    .why-number {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 52px; font-weight: 800;
+      color: var(--navy); line-height: 1;
+      margin-bottom: 8px;
+    }
+    .why-number span { color: var(--gold); }
+    .why-item h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 16px; font-weight: 700; color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .why-item p { font-size: 14px; color: var(--gray); line-height: 1.6; }
+
+    /* ── CONTACT ── */
+    #contato { background: var(--offwhite); }
+    .contact-inner {
+      max-width: 600px; margin: 0 auto; text-align: center;
+    }
+    .contact-inner .section-title { margin-bottom: 12px; }
+    .contact-inner .section-sub { margin-bottom: 40px; }
+    .whatsapp-btn {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: #25D366; color: var(--white);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700; font-size: 17px;
+      padding: 18px 36px; border-radius: var(--radius);
+      text-decoration: none;
+      box-shadow: 0 8px 30px rgba(37,211,102,0.35);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .whatsapp-btn:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(37,211,102,0.45); }
+    .whatsapp-icon { font-size: 24px; }
+    .contact-email {
+      display: block; margin-top: 20px;
+      font-size: 14px; color: var(--gray);
+    }
+    .contact-email a { color: var(--navy); font-weight: 600; text-decoration: none; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      padding: 40px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    footer img { height: 36px; filter: brightness(0) invert(1); opacity: .85; }
+    footer p { font-size: 13px; color: rgba(255,255,255,0.5); }
+    footer a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 13px; }
+    footer a:hover { color: var(--gold); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      nav ul { display: none; }
+      section { padding: 64px 20px; }
+      .hero { padding: 100px 20px 60px; }
+      .petcare-inner { grid-template-columns: 1fr; gap: 40px; }
+      footer { padding: 32px 20px; flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <img src="logo.png" alt="Veepie Soluções Digitais"/>
+  <ul>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#petcare">PetCare Pro</a></li>
+    <li><a href="#porque">Por que Veepie</a></li>
+    <li><a href="#contato" class="nav-cta">Falar conosco</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-eyebrow">Transformação Digital · Feira de Santana, BA</span>
+    <h1>Processos mais inteligentes.<br/><span>Resultados reais.</span></h1>
+    <p>Implementamos o Monday.com, desenvolvemos aplicativos mobile e automatizamos processos para que sua empresa opere com mais eficiência — e você foque no que importa.</p>
+    <div class="hero-buttons">
+      <a href="#contato" class="btn-primary">💬 Falar com a Veepie</a>
+      <a href="#servicos" class="btn-secondary">Ver soluções →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="servicos">
+  <div style="max-width:1100px; margin:0 auto;">
+    <p class="section-label">O que fazemos</p>
+    <h2 class="section-title">Soluções digitais que<br/>transformam operações</h2>
+    <p class="section-sub">Do planejamento à entrega, cuidamos da tecnologia para que a sua equipe foque no negócio.</p>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">📋</div>
+        <h3>Implementação Monday.com</h3>
+        <p>Configuramos e personalizamos o Monday.com do zero — fluxos de trabalho, automações, dashboards e integrações — para que sua empresa tenha visibilidade total dos projetos.</p>
+        <span class="service-tag">Partner Oficial</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📱</div>
+        <h3>Desenvolvimento de Apps</h3>
+        <p>Criamos aplicativos mobile (iOS e Android) com React Native, conectados a backends modernos. Do conceito ao lançamento nas lojas, com IA integrada quando faz sentido.</p>
+        <span class="service-tag">React Native · Expo · Supabase</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚙️</div>
+        <h3>Automação de Processos</h3>
+        <p>Identificamos gargalos operacionais e os eliminamos com automações inteligentes, integrações entre sistemas e fluxos digitais que rodam sem intervenção humana.</p>
+        <span class="service-tag">Make · n8n · API</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PETCARE HIGHLIGHT -->
+<section id="petcare">
+  <div class="petcare-inner">
+    <div>
+      <span class="petcare-badge">🐾 Produto Veepie</span>
+      <h2>Conheça o <span>PetCare Pro</span></h2>
+      <p>A rede social para pets que também é o diário de saúde do seu animal. Registre vacinas, medicamentos, peso e exames — e compartilhe os melhores momentos no feed.</p>
+      <ul class="petcare-features">
+        <li>Histórico completo de saúde do pet</li>
+        <li>Feed social estilo Instagram para pets</li>
+        <li>Assistente de IA para dúvidas sobre cuidados</li>
+        <li>Lembretes de vacinas e medicamentos</li>
+        <li>Encontre vets e petshops próximos</li>
+      </ul>
+      <a href="https://petcare.veepie.com" class="btn-primary" style="background:var(--gold);color:var(--navy);">
+        Conhecer o PetCare Pro →
+      </a>
+    </div>
+    <div class="app-mockup">
+      <span class="paw">🐾</span>
+      <h3>PetCare Pro</h3>
+      <p>O amor que conecta,<br/>o cuidado que protege.</p>
+      <a href="https://petcare.veepie.com" class="store-btn">📲 Baixar na Play Store</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="porque">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="center">
+      <p class="section-label">Por que Veepie</p>
+      <h2 class="section-title">Entregamos resultados,<br/>não só tecnologia</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-number">+<span>50</span></div>
+        <h4>Projetos entregues</h4>
+        <p>Implementações, apps e automações com clientes em todo o Brasil</p>
+      </div>
+      <div class="why-item">
+        <div class="why-number"><span>100</span>%</div>
+        <h4>Foco em resultado</h4>
+        <p>Cada solução é desenhada para gerar impacto real no seu negócio</p>
+      </div>
+      <div class="why-item">
+        <div class="why-number">+<span>5</span></div>
+        <h4>Anos de experiência</h4>
+        <p>Em consultoria digital, gestão e desenvolvimento de software</p>
+      </div>
+      <div class="why-item">
+        <div class="why-number"><span>24</span>h</div>
+        <h4>Suporte ágil</h4>
+        <p>Atendimento próximo e responsivo em todos os projetos</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contato">
+  <div class="contact-inner">
+    <p class="section-label">Contato</p>
+    <h2 class="section-title">Pronto para transformar<br/>seu negócio?</h2>
+    <p class="section-sub">Fale com a nossa equipe pelo WhatsApp e descubra como a Veepie pode ajudar a sua empresa a crescer com tecnologia.</p>
+    <a href="https://wa.me/5575998385211?text=Olá!%20Vim%20pelo%20site%20da%20Veepie%20e%20gostaria%20de%20saber%20mais%20sobre%20as%20soluções." class="whatsapp-btn" target="_blank">
+      <span class="whatsapp-icon">💬</span>
+      Falar no WhatsApp
+    </a>
+    <span class="contact-email">
+      Ou envie um e-mail: <a href="mailto:contato@veepie.com">contato@veepie.com</a>
+    </span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img src="logo.png" alt="Veepie"/>
+  <p>© 2026 Veepie Soluções Digitais · Feira de Santana, Bahia, Brasil</p>
+  <div style="display:flex;gap:20px;">
+    <a href="https://petcare.veepie.com">PetCare Pro</a>
+    <a href="https://petcare.veepie.com/privacidade.html">Privacidade</a>
+    <a href="mailto:contato@veepie.com">Contato</a>
+  </div>
+</footer>
+
+</body>
+</html>
